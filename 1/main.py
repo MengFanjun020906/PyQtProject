@@ -1,21 +1,50 @@
+from PySide6.QtWidgets import QApplication, QMainWindow, QPushButton,  QPlainTextEdit,QMessageBox
 
-from PySide6.QtWidgets import QApplication, QMainWindow, QPushButton,  QPlainTextEdit
+#把统计功能放进一个类
+class Stats:
+    def __init__(self):
+        self.window = QMainWindow()
+        self.window.resize(500, 400)
+        self.window.move(300, 300)
+        self.window.setWindowTitle('薪资统计')
 
-app = QApplication([])#底层功能函数，要先写
+        self.textEdit = QPlainTextEdit(self.window)
+        self.textEdit.setPlaceholderText("请输入薪资表")
+        self.textEdit.move(10, 25)
+        self.textEdit.resize(300, 350)
 
-window = QMainWindow()
-window.resize(500, 400)#决定window大小
-window.move(300, 310)#控制窗口出现在显示器的位置
-window.setWindowTitle('薪资统计')
+        self.button = QPushButton('统计', self.window)
+        self.button.move(380, 80)
 
-textEdit = QPlainTextEdit(window)#创建文本输入框
-textEdit.setPlaceholderText("请输入薪资表")#创建输入框内提示文本
-textEdit.move(10,25)#里面编辑框的位置
-textEdit.resize(300,350)
+        self.button.clicked.connect(self.handleCalc)
 
-button = QPushButton('统计', window)#设置按钮
-button.move(380,80)
 
-window.show()#把窗口展现出来
+    def handleCalc(self):
+        info = self.textEdit.toPlainText()
 
-app.exec_()#死循环，等待用户关闭
+        # 薪资20000 以上 和 以下 的人员名单
+        salary_above_20k = ''
+        salary_below_20k = ''
+        for line in info.splitlines():
+            if not line.strip():
+                continue
+            parts = line.split(' ')
+            # 去掉列表中的空字符串内容
+            parts = [p for p in parts if p]
+            name,salary,age = parts
+            if int(salary) >= 20000:
+                salary_above_20k += name + '\n'
+            else:
+                salary_below_20k += name + '\n'
+
+        QMessageBox.about(self.window,
+                    '统计结果',
+                    f'''薪资20000 以上的有：\n{salary_above_20k}
+                    \n薪资20000 以下的有：\n{salary_below_20k}'''
+                    )
+
+app = QApplication([])
+stats = Stats()
+#确定类被调用的时候要执行show这个函数，要不然看不到了
+stats.window.show()
+app.exec_()
