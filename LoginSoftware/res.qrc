@@ -1,0 +1,14 @@
+<RCC>
+  <qresource prefix="icons">
+    <file>icons/close-circle.png</file>
+    <file>icons/exit.png</file>
+    <file>icons/home.png</file>
+    <file>icons/login.png</file>
+    <file>icons/minimizing.png</file>
+    <file>icons/register.png</file>
+  </qresource>
+  <qresource prefix="backgroundimages">
+    <file>backgroundsimages/login1.png</file>
+    <file>backgroundsimages/login2.png</file>
+  </qresource>
+</RCC>
