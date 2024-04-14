@@ -408,7 +408,7 @@ QPushButton:pressed{
              </widget>
             </item>
             <item>
-             <widget class="QPushButton" name="pushButton_3">
+             <widget class="QPushButton" name="pushButton_Register">
               <property name="text">
                <string/>
               </property>
