@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>800</width>
-    <height>600</height>
+    <height>545</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -251,7 +251,7 @@ QPushButton:pressed{
 </string>
               </property>
               <property name="currentIndex">
-               <number>0</number>
+               <number>1</number>
               </property>
               <widget class="QWidget" name="page_register">
                <layout class="QVBoxLayout" name="verticalLayout_6">
